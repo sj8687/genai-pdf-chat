@@ -107,7 +107,7 @@ const worker = new Worker(
 
 
 // const embeddings = new GoogleGenerativeAIEmbeddings({
-//     apiKey: AIzaSyBpc9sn7T1a-ZHljfM6Fd13WeoABnoweYc,
+//     apiKey: ,
 //     model: "text-embedding-004",
 // });
 

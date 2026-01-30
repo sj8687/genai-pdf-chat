@@ -8,7 +8,7 @@ import { QdrantVectorStore } from "@langchain/qdrant";
 
 
 const ai = new GoogleGenAI({
-    apiKey:''
+    apiKey: ''
 });
 
 
@@ -92,21 +92,21 @@ app.get('/chat', async (req, res) => {
 
         const chatResult = await ai.models.generateContent({
             model: "gemini-2.0-flash",
-            systemInstruction: SYSTEM_PROMPT,
-            contents: [
-                { role: 'user', parts: [{ text: userQuery }] },
-            ],
+            config: {
+                systemInstruction: SYSTEM_PROMPT,
+            },
+            contents: userQuery,
         });
 
 
-        console.log(chatResult);
+
+        console.log("res----------------------------------",chatResult.text);
 
 
-        const aiResponse = chatResult.response ? chatResult.response.text() : chatResult.text;
-
+        const aiResponse = chatResult.response.candidates[0].content.parts[0].text;
         return res.json({
             message: aiResponse,
-            docs: docs,
+            // docs: docs,
         });
 
     } catch (error) {
@@ -114,8 +114,6 @@ app.get('/chat', async (req, res) => {
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
-
-
 
 
 

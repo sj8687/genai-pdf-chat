@@ -16,7 +16,7 @@ interface Doc {
 interface IMessage {
   role: 'assistant' | 'user';
   content?: string;
-  documents?: Doc[];
+  // documents?: Doc[];
 }
 
 const ChatComponent: React.FC = () => {
