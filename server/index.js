@@ -106,7 +106,7 @@ app.get('/chat', async (req, res) => {
         const aiResponse = chatResult.response.candidates[0].content.parts[0].text;
         return res.json({
             message: aiResponse,
-            // docs: docs,
+            docs: docs,
         });
 
     } catch (error) {
