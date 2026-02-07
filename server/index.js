@@ -100,13 +100,16 @@ app.get('/chat', async (req, res) => {
 
 
 
-        console.log("res----------------------------------",chatResult.text);
+        console.log("res----------------------------------", chatResult.text);
 
 
-        const aiResponse = chatResult.response.candidates[0].content.parts[0].text;
+        const aiResponse = chatResult
+            ? chatResult.response.candidates[0].content.parts[0].text
+            : "Sorry, I don't have an answer for that.";
+
         return res.json({
             message: aiResponse,
-            docs: docs,
+            // docs: docs,
         });
 
     } catch (error) {
